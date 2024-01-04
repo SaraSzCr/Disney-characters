@@ -1,22 +1,51 @@
-<main>
-    <!-- <div>
-        <section>
-            <h3>Characters</h3>
-            <ul class="js_charactersUl">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </section>
-        <section>
-            <h3>Favourite Characters</h3>
-            <ul class="js_favouriteCharactersUl">
-                <li></li>
-                <li></li>
-                <li></li>
-                <li></li>
-            </ul>
-        </section>
-    </div> -->
+<main class="mt-1">
+  <form>
+    <label for="character">Disney characters</label>
+    <input
+      class="userInput js_userInput"
+      type="text"
+      name="text"
+      id="text"
+      placeholder="Example: Simba"
+    />
+    <input class="js_btnSearch" type="submit" value="Search" />
+  </form>
+  <div class="container">
+    <section class="">
+      <h3>Characters</h3>
+      <ul class="disneyCards js_charactersUl">
+        <li>
+          <img
+            src="https://static.wikia.nocookie.net/disney/images/3/37/Profile_-_Simba.jpeg"
+            alt="image Simba"
+          />
+          <h4>Simba</h4>
+        </li>
+        <li>
+          <img
+            src="https://static.wikia.nocookie.net/disney/images/9/95/Profile_-_Elsa.jpeg"
+            alt="image Elsa"
+          />
+          <h4>Elsa</h4>
+        </li>
+        <li>
+            <img src="https://static.wikia.nocookie.net/disney/images/7/7b/Profile_-_Pocahontas.jpeg" alt="image Pocahontas">
+            <h4>Pocahontas</h4>
+        </li>
+        <li>
+            <img src="https://static.wikia.nocookie.net/disney/images/c/ce/Profile_-_Bambi.png" alt="image Bambi">
+            <h4>Bambi</h4>
+        </li>
+      </ul>
+    </section>
+    <section>
+      <h3>Favourite Characters</h3>
+      <ul class="disneyFavourites js_favouriteCharactersUl">
+        <li></li>
+        <li></li>
+        <li></li>
+        <li></li>
+      </ul>
+    </section>
+  </div>
 </main>
