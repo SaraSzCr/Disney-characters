@@ -48,14 +48,57 @@ const charactersData = [
         "updatedAt": "2021-12-20T20:39:18.032Z",
         "url": "https://api.disneyapi.dev/characters/18",
         "__v": 0
-        }
+        },
+        {
+            "_id": 16,
+            "films": [
+            "Cheetah"
+            ],
+            "shortFilms": [],
+            "tvShows": [],
+            "videoGames": [],
+            "parkAttractions": [],
+            "allies": [],
+            "enemies": [],
+            "sourceUrl": "https://disney.fandom.com/wiki/Abdullah",
+            "name": "Abdullah",
+            "imageUrl": "https://static.wikia.nocookie.net/disney/images/c/cb/1087603-44532-clp-950.jpg",
+            "createdAt": "2021-04-12T01:26:02.377Z",
+            "updatedAt": "2021-12-20T20:39:18.032Z",
+            "url": "https://api.disneyapi.dev/characters/16",
+            "__v": 0
+            },
+            {
+            "_id": 45,
+            "films": [
+            "Mary Poppins (film)",
+            "Mary Poppins Returns"
+            ],
+            "shortFilms": [],
+            "tvShows": [],
+            "videoGames": [],
+            "parkAttractions": [],
+            "allies": [],
+            "enemies": [],
+            "sourceUrl": "https://disney.fandom.com/wiki/Admiral_Boom_and_Mr._Binnacle",
+            "name": "Admiral Boom and Mr. Binnacle",
+            "imageUrl": "https://static.wikia.nocookie.net/disney/images/b/be/Marypoppins-disneyscreencaps_com-1086.jpg",
+            "createdAt": "2021-04-12T01:26:21.560Z",
+            "updatedAt": "2021-12-20T20:39:18.033Z",
+            "url": "https://api.disneyapi.dev/characters/45",
+            "__v": 0
+            }
 
 
 ];
 
 // FUNCIONES
 
+
+
+
 function showOne(characterObj) {
+   
   charactersUl.innerHTML += ` 
         <li >
           <img
@@ -68,11 +111,21 @@ function showOne(characterObj) {
         `;
 }
 
+function showAll (){
+    for(const eachCharacter of charactersData){
+        showOne (eachCharacter)
+    }
+
+}
+
 //FUNCIONES DE EVENTOS (Handle..)
 
 // EVENTOS
 
 // CODIGO CUANDO CARGA LA PAGINA
 
-showOne(charactersData [0]);
-showOne(charactersData[1]);
+
+
+showAll();
+
+
