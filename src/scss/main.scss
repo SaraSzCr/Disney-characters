@@ -12,3 +12,15 @@
 .disneyCards{
     list-style: none;
 }
+.disneyFavourites{
+    list-style: none;
+}
+.container{
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+}
+.favouriteCards{
+    background-color: blueviolet;
+    color: cyan;
+    
+}
