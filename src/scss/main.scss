@@ -1,26 +1,30 @@
-@import 'core/variables';
-@import 'core/reset';
-@import 'components/code';
-@import 'components/links';
-@import 'layout/page';
-@import 'layout/header';
-@import 'layout/footer';
-@import 'pages/index';
+@import "core/variables";
+@import "core/reset";
+@import "components/code";
+@import "components/links";
+@import "layout/page";
+@import "layout/header";
+@import "layout/footer";
+@import "pages/index";
 
-
-
-.disneyCards{
-    list-style: none;
+.disneyCards {
+  list-style: none;
 }
-.disneyFavourites{
-    list-style: none;
+.disneyFavourites {
+  list-style: none;
 }
-.container{
-    display: grid;
-    grid-template-columns: 2fr 1fr;
+.container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
 }
-.favouriteCards{
-    background-color: blueviolet;
-    color: cyan;
-    
+.favouriteCard {
+  background-color: blueviolet;
+  color: cyan;
+}
+.characterCard {
+  display: flex;
+  flex-direction: column;
+  padding: 10px;
+  justify-content: flex-start;
+  align-items: center;
 }
