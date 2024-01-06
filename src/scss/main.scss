@@ -7,24 +7,5 @@
 @import "layout/footer";
 @import "pages/index";
 
-.disneyCards {
-  list-style: none;
-}
-.disneyFavourites {
-  list-style: none;
-}
-.container {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-}
-.favouriteCard {
-  background-color: blueviolet;
-  color: cyan;
-}
-.characterCard {
-  display: flex;
-  flex-direction: column;
-  padding: 10px;
-  justify-content: flex-start;
-  align-items: center;
-}
+
+  
