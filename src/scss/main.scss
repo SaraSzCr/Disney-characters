@@ -8,4 +8,57 @@
 @import "pages/index";
 
 
+.disneyCards {
+    list-style: none;
+  }
+  .disneyFavourites {
+    list-style: none;
+  }
+  .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  
+    &__section {
+      display: flex;
+      justify-content: center;
+      flex-direction: column;
+      gap: 30px;
+  
+      &--title {
+        color: blue;
+        font-size: 20px;
+        padding-left: 50px;
+      }
+    }
+    &__favouriteSection {
+      &--favouriteTitle {
+        color: blue;
+        font-size: 20px;
+        padding-left: 20px;
+        margin-bottom: 30px;
+      }
+    }
+  }
+  
+  .favouriteCard {
+    background-color: blueviolet;
+    color: cyan;
+  }
+  .characterCard {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    width: 250px;
+  }
+  .favouriteCharacter_Card {
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
+    justify-content: flex-start;
+    align-items: center;
+    width: 250px;
+  }
+
   

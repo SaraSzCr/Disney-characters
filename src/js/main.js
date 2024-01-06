@@ -2,7 +2,8 @@
 
 // QUERY SELECTOR
 const charactersUl = document.querySelector(".js_charactersUl");
-const favouriteCharactersUl = document.querySelector( ".js_favouriteCharactersUl"
+const favouriteCharactersUl = document.querySelector(
+  ".js_favouriteCharactersUl"
 );
 
 const btnSearch = document.querySelector(".js_btnSearch");
@@ -34,7 +35,7 @@ function showAll() {
   }
 
   const allCharactersLi = document.querySelectorAll(".js_mainList");
-  console.log(allCharactersLi);
+  //   console.log(allCharactersLi);
   //como es una lista de arrays, no le puedes poner directamente el evento a const allCharacterLi
 
   for (const characterLi of allCharactersLi) {
@@ -46,16 +47,18 @@ function showAll() {
 
 function handleClickCharacter(event) {
   const clickedCharacterLi = event.currentTarget;
-  console.log(clickedCharacterLi);
+  //   console.log(clickedCharacterLi);
 
   clickedCharacterLi.classList.toggle("favouriteCard");
 
   console.log(clickedCharacterLi.dataset.id);
 
-  const selectedCharacterObj = charactersData.find((eachCharacter) => eachCharacter.id === clickedCharacterLi.dataset._id);
+  const selectedCharacterObj = charactersData.find(
+    (eachCharacter) => eachCharacter.id === clickedCharacterLi.dataset._id
+  );
   console.log(selectedCharacterObj);
 
-         favouriteCharactersUl.innerHTML += `
+  favouriteCharactersUl.innerHTML += `
         <li class= "favouriteCharacter_Card js_mainList" >
          <img
          src= ${selectedCharacterObj.imageUrl}
@@ -81,7 +84,7 @@ function handleClickCharacter(event) {
 fetch("//api.disneyapi.dev/character?pageSize=50")
   .then((response) => response.json())
   .then((data) => {
-    console.log(data.data);
+    // console.log(data.data);
     charactersData = data.data;
     showAll();
   });
