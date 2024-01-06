@@ -47,27 +47,25 @@ function showAll() {
 
 function handleClickCharacter(event) {
   const clickedCharacterLi = event.currentTarget;
-  //   console.log(clickedCharacterLi);
 
   clickedCharacterLi.classList.toggle("favouriteCard");
 
-  console.log(clickedCharacterLi.dataset.id);
+  const clickedCharacterId = parseInt(clickedCharacterLi.dataset.id);
+
 
   const selectedCharacterObj = charactersData.find(
-    (eachCharacter) => eachCharacter.id === clickedCharacterLi.dataset._id
+    (eachCharacter) => eachCharacter._id === clickedCharacterId
   );
-  console.log(selectedCharacterObj);
 
   favouriteCharactersUl.innerHTML += `
-        <li class= "favouriteCharacter_Card js_mainList" >
-         <img
-         src= ${selectedCharacterObj.imageUrl}
-
-          alt=""
-     />
-        <h4>${selectedCharacterObj.name}</h4>
-       </li>
-  `;
+          <li class="favouriteCharacter_Card js_mainList">
+              <img
+              src="${selectedCharacterObj.imageUrl}"
+              alt=""
+              />
+          <h4>${selectedCharacterObj.name}</h4>
+         </li>
+    `;
 }
 // function handleClickSearch(){
 // charactersUl.innerHTML=userInput.value;
