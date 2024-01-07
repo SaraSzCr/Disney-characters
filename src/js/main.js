@@ -12,7 +12,7 @@ const btnSearch = document.querySelector(".js_btnSearch");
 //VARIABLES DE DATOS
 
 let charactersData = [];
-// let favouriteData = [];
+const favouritesData = [];
 
 // FUNCIONES
 
@@ -43,29 +43,56 @@ function showAll() {
   }
 }
 
+function showOneFavourite(favouriteObj) {
+  favouriteCharactersUl.innerHTML += `
+          <li class="favouriteCharacter_Card">
+              <img
+              src="${favouriteObj.imageUrl}"
+              alt=""
+              />
+          <h4>${favouriteObj.name}</h4>
+         </li>
+    `;
+}
+
+function showFavourites() {
+  favouriteCharactersUl.innerHTML = "";
+
+  for (const eachFavouriteCharacter of favouritesData) {
+    showOneFavourite(eachFavouriteCharacter);
+  }
+}
+
 //FUNCIONES DE EVENTOS (Handle..)
 
 function handleClickCharacter(event) {
   const clickedCharacterLi = event.currentTarget;
 
-  clickedCharacterLi.classList.toggle("favouriteCard");
-
   const clickedCharacterId = parseInt(clickedCharacterLi.dataset.id);
-
 
   const selectedCharacterObj = charactersData.find(
     (eachCharacter) => eachCharacter._id === clickedCharacterId
   );
+  console.log(selectedCharacterObj);
 
-  favouriteCharactersUl.innerHTML += `
-          <li class="favouriteCharacter_Card js_mainList">
-              <img
-              src="${selectedCharacterObj.imageUrl}"
-              alt=""
-              />
-          <h4>${selectedCharacterObj.name}</h4>
-         </li>
-    `;
+  const favouriteCharacterIndex = favouritesData.findIndex(
+    (eachCharacter) => eachCharacter._id === clickedCharacterId
+  );
+  console.log(favouriteCharacterIndex);
+
+  if (favouriteCharacterIndex === -1){
+    favouritesData.push(selectedCharacterObj);
+  }
+  else{
+    //la quito  
+    favouritesData.splice(favouriteCharacterIndex ,1);
+  }
+
+  
+
+  showFavourites();
+
+  clickedCharacterLi.classList.toggle("favouriteCard");
 }
 // function handleClickSearch(){
 // charactersUl.innerHTML=userInput.value;
