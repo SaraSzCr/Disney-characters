@@ -5,14 +5,17 @@ const charactersUl = document.querySelector(".js_charactersUl");
 const favouriteCharactersUl = document.querySelector(
   ".js_favouriteCharactersUl"
 );
+const disneyForm = document.querySelector(".js_form");
+const userInput = document.querySelector(".js_userInput");
 
-const btnSearch = document.querySelector(".js_btnSearch");
-// const userInput = document.querySelector('.js_userInput');
+// const btnSearch = document.querySelector(".js_btnSearch");
 
 //VARIABLES DE DATOS
 
 let charactersData = [];
-const favouritesData = [];
+let favouritesData = [];
+
+
 
 // FUNCIONES
 
@@ -30,6 +33,9 @@ function showOne(characterObj) {
 }
 
 function showAll() {
+  // favouriteCharactersUl.innerHTML = "";
+  charactersUl.innerHTML = " ";
+
   for (const eachCharacter of charactersData) {
     showOne(eachCharacter);
   }
@@ -80,30 +86,52 @@ function handleClickCharacter(event) {
   );
   console.log(favouriteCharacterIndex);
 
-  if (favouriteCharacterIndex === -1){
+  if (favouriteCharacterIndex === -1) {
     favouritesData.push(selectedCharacterObj);
-  }
-  else{
-    //la quito  
-    favouritesData.splice(favouriteCharacterIndex ,1);
+  } else {
+    //la quito
+    favouritesData.splice(favouriteCharacterIndex, 1);
   }
 
-  
+  // localStorage.setItem("favouritesData", JSON.stringify(favouritesData));
 
   showFavourites();
 
   clickedCharacterLi.classList.toggle("favouriteCard");
 }
+// const favouritesStored = JSON.parse(localStorage.getItem("favouritesData"));
+// if (favouritesStored) {
+//   favouritesData = favouritesStored;
+
+//   showFavourites(favouriteCharactersUl);
+// }
+
+
 // function handleClickSearch(){
 // charactersUl.innerHTML=userInput.value;
 // console.log(handleClickSearch);
 // }
 
 // EVENTOS
-// btnSearch.addEventListener("click", (event) => {
-//   event.preventDefault();
-//   console.log("Holis");
-// });
+disneyForm.addEventListener("submit", (event) => {
+  event.preventDefault();
+
+  fetch(`//api.disneyapi.dev/character?pageSize=50&name=${userInput.value}`)
+    .then((response) => response.json())
+    .then((data) => {
+      if (Array.isArray(data.data)) {
+        charactersData = data.data;
+      } else {
+        charactersData = [data.data];
+      }
+      console.log("hola", charactersData);
+
+      // console.log(" Hola ", data.data);
+
+      showAll();
+    });
+});
+
 // CODIGO CUANDO CARGA LA PAGINA
 
 fetch("//api.disneyapi.dev/character?pageSize=50")
@@ -113,3 +141,6 @@ fetch("//api.disneyapi.dev/character?pageSize=50")
     charactersData = data.data;
     showAll();
   });
+
+//   const savedTasks = JSON.parse(localStorage.getItem('tasks'));
+// console.log(savedTasks.length)
