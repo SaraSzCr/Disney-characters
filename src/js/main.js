@@ -15,7 +15,12 @@ const userInput = document.querySelector(".js_userInput");
 let charactersData = [];
 let favouritesData = [];
 
+const favouritesStored = JSON.parse(localStorage.getItem("favouritesData"));
+if (favouritesStored) {
+  favouritesData = favouritesStored;
 
+  showFavourites(favouriteCharactersUl);
+}
 
 // FUNCIONES
 
@@ -93,7 +98,7 @@ function handleClickCharacter(event) {
     favouritesData.splice(favouriteCharacterIndex, 1);
   }
 
-  // localStorage.setItem("favouritesData", JSON.stringify(favouritesData));
+  localStorage.setItem("favouritesData", JSON.stringify(favouritesData));
 
   showFavourites();
 
