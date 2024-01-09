@@ -8,8 +8,6 @@ const favouriteCharactersUl = document.querySelector(
 const disneyForm = document.querySelector(".js_form");
 const userInput = document.querySelector(".js_userInput");
 
-// const btnSearch = document.querySelector(".js_btnSearch");
-
 //VARIABLES DE DATOS
 
 let charactersData = [];
@@ -26,15 +24,14 @@ if (favouritesStored) {
 
 function showOne(characterObj) {
   charactersUl.innerHTML += ` 
-        <li class="characterCard js_mainList" data-id="${characterObj._id}" >
-          <img
-          src= ${characterObj.imageUrl}
-            
-            alt=""
-          />
-          <h4>${characterObj.name}</h4>
-        </li>
-        `;
+    <li class="characterCard js_mainList" data-id="${characterObj._id}">
+      <img
+        src="${characterObj.imageUrl}"
+        alt="Image"
+      />
+      <h4>${characterObj.name}</h4>
+    </li>
+  `;
 }
 
 function showAll() {
@@ -56,14 +53,15 @@ function showAll() {
 
 function showOneFavourite(favouriteObj) {
   favouriteCharactersUl.innerHTML += `
-          <li class="favouriteCharacter_Card">
-              <img
-              src="${favouriteObj.imageUrl}"
-              alt=""
-              />
-          <h4>${favouriteObj.name}</h4>
-         </li>
-    `;
+    <li class="favouriteCharacter_Card js_favouriteCharacterCard" data-id="${favouriteObj._id}">
+      <img
+        src="${favouriteObj.imageUrl}"
+        alt="Favourite Image"
+      />
+      <h4>${favouriteObj.name}</h4>
+      <button class="js_deleteFavouriteBtn" data-id="${favouriteObj._id}">X</button>
+    </li>
+  `;
 }
 
 function showFavourites() {
@@ -71,6 +69,12 @@ function showFavourites() {
 
   for (const eachFavouriteCharacter of favouritesData) {
     showOneFavourite(eachFavouriteCharacter);
+  }
+
+  const allDeleteBtn = document.querySelectorAll(".js_deleteFavouriteBtn");
+
+  for (const eachDeleteBtn of allDeleteBtn) {
+    eachDeleteBtn.addEventListener("click", handlerDeleteFavourite);
   }
 }
 
@@ -84,7 +88,7 @@ function handleClickCharacter(event) {
   const selectedCharacterObj = charactersData.find(
     (eachCharacter) => eachCharacter._id === clickedCharacterId
   );
-  console.log(selectedCharacterObj);
+  // console.log(selectedCharacterObj);
 
   const favouriteCharacterIndex = favouritesData.findIndex(
     (eachCharacter) => eachCharacter._id === clickedCharacterId
@@ -104,18 +108,27 @@ function handleClickCharacter(event) {
 
   clickedCharacterLi.classList.toggle("favouriteCard");
 }
-// const favouritesStored = JSON.parse(localStorage.getItem("favouritesData"));
-// if (favouritesStored) {
-//   favouritesData = favouritesStored;
 
-//   showFavourites(favouriteCharactersUl);
-// }
+function handlerDeleteFavourite(event) {
+  const clickedFavCharacterLi = event.currentTarget;
+  const clickedFavCharacterId = parseInt(clickedFavCharacterLi.dataset.id);
+  console.log(clickedFavCharacterId);
 
+  const selectedFavCharacterObj = favouritesData.find(
+    (eachCharacter) => eachCharacter._id === clickedFavCharacterId
+  );
 
-// function handleClickSearch(){
-// charactersUl.innerHTML=userInput.value;
-// console.log(handleClickSearch);
-// }
+  const favouriteCharacterIndex = favouritesData.findIndex(
+    (favCharacter) => favCharacter._id === parseInt(clickedFavCharacterId)
+  );
+  console.log(favouriteCharacterIndex);
+
+  favouritesData.splice(favouriteCharacterIndex, 1);
+
+  showFavourites();
+
+  //   localStorage.removeItem("");
+}
 
 // EVENTOS
 disneyForm.addEventListener("submit", (event) => {
@@ -129,16 +142,14 @@ disneyForm.addEventListener("submit", (event) => {
       } else {
         charactersData = [data.data];
       }
-      console.log("hola", charactersData);
-
-      // console.log(" Hola ", data.data);
 
       showAll();
     });
 });
 
-// CODIGO CUANDO CARGA LA PAGINA
 
+
+// CODIGO CUANDO CARGA LA PAGINA
 fetch("//api.disneyapi.dev/character?pageSize=50")
   .then((response) => response.json())
   .then((data) => {
@@ -147,5 +158,4 @@ fetch("//api.disneyapi.dev/character?pageSize=50")
     showAll();
   });
 
-//   const savedTasks = JSON.parse(localStorage.getItem('tasks'));
-// console.log(savedTasks.length)
+
