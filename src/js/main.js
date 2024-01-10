@@ -43,8 +43,6 @@ function showAll() {
   }
 
   const allCharactersLi = document.querySelectorAll(".js_mainList");
-  //   console.log(allCharactersLi);
-  //como es una lista de arrays, no le puedes poner directamente el evento a const allCharacterLi
 
   for (const characterLi of allCharactersLi) {
     characterLi.addEventListener("click", handleClickCharacter);
@@ -59,7 +57,7 @@ function showOneFavourite(favouriteObj) {
         alt="Favourite Image"
       />
       <h4>${favouriteObj.name}</h4>
-      <button class="js_deleteFavouriteBtn" data-id="${favouriteObj._id}">X</button>
+      <button class="deleteFavBtn js_deleteFavouriteBtn" data-id="${favouriteObj._id}">X</button>
     </li>
   `;
 }
@@ -88,7 +86,6 @@ function handleClickCharacter(event) {
   const selectedCharacterObj = charactersData.find(
     (eachCharacter) => eachCharacter._id === clickedCharacterId
   );
-  // console.log(selectedCharacterObj);
 
   const favouriteCharacterIndex = favouritesData.findIndex(
     (eachCharacter) => eachCharacter._id === clickedCharacterId
@@ -98,7 +95,6 @@ function handleClickCharacter(event) {
   if (favouriteCharacterIndex === -1) {
     favouritesData.push(selectedCharacterObj);
   } else {
-    //la quito
     favouritesData.splice(favouriteCharacterIndex, 1);
   }
 
@@ -126,8 +122,6 @@ function handlerDeleteFavourite(event) {
   favouritesData.splice(favouriteCharacterIndex, 1);
 
   showFavourites();
-
-  //   localStorage.removeItem("");
 }
 
 // EVENTOS
@@ -147,8 +141,6 @@ disneyForm.addEventListener("submit", (event) => {
     });
 });
 
-
-
 // CODIGO CUANDO CARGA LA PAGINA
 fetch("//api.disneyapi.dev/character?pageSize=50")
   .then((response) => response.json())
@@ -157,5 +149,3 @@ fetch("//api.disneyapi.dev/character?pageSize=50")
     charactersData = data.data;
     showAll();
   });
-
-
