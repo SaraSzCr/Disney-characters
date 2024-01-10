@@ -1,15 +1,15 @@
 <main class="mt-1">
-  <form class="js_form" >
-    <label for="character">Disney characters</label>
-    <input
-      class="userInput js_userInput"
-      type="text"
-      name="text"
-      id="text"
-      placeholder="Example: Simba"
-    />
-    <input class="js_btnSearch" type="submit" value="Search" />
-  </form>
+    <form class="main__form js_form" >
+      <label for="character" class="main__form--label"></label>
+      <input
+        class="main__form--input js_userInput"
+        type="text"
+        name="text"
+        id="text"
+        placeholder="Example: Simba"
+      />
+      <input class="main__form--inputBtn js_btnSearch" type="submit" value="Search" />
+    </form>
   <div class="container">
     <section class="container__section">
       <h3 class="container__section--title">Characters</h3>
@@ -18,16 +18,6 @@
     <section class="container__favouriteSection">
       <h3 class="container__favouriteSection--favouriteTitle">Favourite Characters</h3>
       <ul class="disneyFavourites js_favouriteCharactersUl">
-        <!-- <li class="favouriteCard">
-          <img
-            src="https://static.wikia.nocookie.net/disney/images/9/95/Profile_-_Elsa.jpeg"
-            alt="image Elsa"
-          />
-          <h4>Elsa</h4>
-        </li>
-        <li></li>
-        <li></li>
-        <li></li> -->
       </ul>
     </section>
   </div>

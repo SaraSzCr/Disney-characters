@@ -8,6 +8,49 @@
 @import "pages/index";
 
 
+
+.header{
+  background-image: url(../images/disneyBaloons.jpg);
+  width: 100vw;
+  height: 20vh;
+  background-size: cover;
+}
+.main__form{
+  border: solid, red 3px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin-top:20px;
+
+
+
+  &--input{
+    border-color: orange;
+    width:60%;
+    height:40%;
+    padding:10px;
+    border-radius: 10px;
+    font-size: 18px;;
+  }
+
+  &--inputBtn{
+    color: aliceblue;
+    background-color: orange;
+    width: 10%;
+    margin-left: 20px;
+    border-radius: 10px;
+    font-size: 18px;;
+
+    &:hover {
+      border: 4px solid rgb(255, 166, 0);
+      background-color: #c3703c;
+    }
+  
+  }
+  
+}
+
+
 .disneyCards {
     list-style: none;
   }
@@ -16,7 +59,10 @@
   }
   .container {
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: 2fr 1fr;
+    margin-top: 50px;
+    margin-left: 100px;
+
   
     &__section {
       display: flex;
@@ -25,16 +71,15 @@
       gap: 30px;
   
       &--title {
-        color: blue;
-        font-size: 20px;
+        color: rgba(255, 64, 0, 0.932);
+        font-size: 30px;
         padding-left: 50px;
       }
     }
     &__favouriteSection {
       &--favouriteTitle {
-        color: blue;
-        font-size: 20px;
-        padding-left: 20px;
+        color: rgba(255, 64, 0, 0.932);
+        font-size: 30px;
         margin-bottom: 30px;
       }
     }
