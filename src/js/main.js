@@ -1,6 +1,7 @@
 "use strict";
 
 // QUERY SELECTOR
+
 const charactersUl = document.querySelector(".js_charactersUl");
 const favouriteCharactersUl = document.querySelector(
   ".js_favouriteCharactersUl"
@@ -35,7 +36,6 @@ function showOne(characterObj) {
 }
 
 function showAll() {
-  // favouriteCharactersUl.innerHTML = "";
   charactersUl.innerHTML = " ";
 
   for (const eachCharacter of charactersData) {
@@ -76,7 +76,7 @@ function showFavourites() {
   }
 }
 
-//FUNCIONES DE EVENTOS (Handle..)
+//FUNCIONES DE EVENTOS
 
 function handleClickCharacter(event) {
   const clickedCharacterLi = event.currentTarget;
@@ -90,7 +90,6 @@ function handleClickCharacter(event) {
   const favouriteCharacterIndex = favouritesData.findIndex(
     (eachCharacter) => eachCharacter._id === clickedCharacterId
   );
-  console.log(favouriteCharacterIndex);
 
   if (favouriteCharacterIndex === -1) {
     favouritesData.push(selectedCharacterObj);
@@ -104,11 +103,9 @@ function handleClickCharacter(event) {
 
   clickedCharacterLi.classList.toggle("favouriteCard");
 }
-
 function handlerDeleteFavourite(event) {
   const clickedFavCharacterLi = event.currentTarget;
   const clickedFavCharacterId = parseInt(clickedFavCharacterLi.dataset.id);
-  console.log(clickedFavCharacterId);
 
   const selectedFavCharacterObj = favouritesData.find(
     (eachCharacter) => eachCharacter._id === clickedFavCharacterId
@@ -117,7 +114,6 @@ function handlerDeleteFavourite(event) {
   const favouriteCharacterIndex = favouritesData.findIndex(
     (favCharacter) => favCharacter._id === parseInt(clickedFavCharacterId)
   );
-  console.log(favouriteCharacterIndex);
 
   favouritesData.splice(favouriteCharacterIndex, 1);
 
@@ -125,6 +121,7 @@ function handlerDeleteFavourite(event) {
 }
 
 // EVENTOS
+
 disneyForm.addEventListener("submit", (event) => {
   event.preventDefault();
 
@@ -142,10 +139,10 @@ disneyForm.addEventListener("submit", (event) => {
 });
 
 // CODIGO CUANDO CARGA LA PAGINA
+
 fetch("//api.disneyapi.dev/character?pageSize=50")
   .then((response) => response.json())
   .then((data) => {
-    // console.log(data.data);
     charactersData = data.data;
     showAll();
   });
