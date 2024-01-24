@@ -24,8 +24,25 @@ if (favouritesStored) {
 // FUNCIONES
 
 function showOne(characterObj) {
-  charactersUl.innerHTML += ` 
-    <li class="characterCard js_mainList" data-id="${characterObj._id}">
+  console.log("voy a pintar" + characterObj._id);
+
+  const favouriteCharacterIndex = favouritesData.findIndex(
+    (eachCharacter) => eachCharacter._id === characterObj._id
+  );
+
+  if (favouriteCharacterIndex === -1) {
+    charactersUl.innerHTML += ` 
+  <li class="characterCard js_mainList" data-id="${characterObj._id}">
+    <img
+      src="${characterObj.imageUrl}"
+      alt="Image"
+    />
+    <h4>${characterObj.name}</h4>
+  </li>
+`;
+  } else {
+    charactersUl.innerHTML += ` 
+    <li class="favouriteCard characterCard js_mainList" data-id="${characterObj._id}">
       <img
         src="${characterObj.imageUrl}"
         alt="Image"
@@ -33,6 +50,7 @@ function showOne(characterObj) {
       <h4>${characterObj.name}</h4>
     </li>
   `;
+  }
 }
 
 function showAll() {
@@ -101,15 +119,17 @@ function handleClickCharacter(event) {
 
   showFavourites();
 
-  clickedCharacterLi.classList.toggle("favouriteCard");
+  showAll();
+
+  // clickedCharacterLi.classList.toggle("favouriteCard");
 }
 function handlerDeleteFavourite(event) {
   const clickedFavCharacterLi = event.currentTarget;
   const clickedFavCharacterId = parseInt(clickedFavCharacterLi.dataset.id);
 
-  const selectedFavCharacterObj = favouritesData.find(
-    (eachCharacter) => eachCharacter._id === clickedFavCharacterId
-  );
+  // const selectedFavCharacterObj = favouritesData.find(
+  //   (eachCharacter) => eachCharacter._id === clickedFavCharacterId
+  // );
 
   const favouriteCharacterIndex = favouritesData.findIndex(
     (favCharacter) => favCharacter._id === parseInt(clickedFavCharacterId)
@@ -117,7 +137,10 @@ function handlerDeleteFavourite(event) {
 
   favouritesData.splice(favouriteCharacterIndex, 1);
 
+  localStorage.setItem("favouritesData", JSON.stringify(favouritesData));
+
   showFavourites();
+  showAll();
 }
 
 // EVENTOS
