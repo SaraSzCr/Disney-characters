@@ -24,10 +24,10 @@ if (favouritesStored) {
 // FUNCIONES
 
 function showOne(characterObj) {
-
+  console.log("voy a pintar" + characterObj._id);
 
   const favouriteCharacterIndex = favouritesData.findIndex(
-    (eachCharacter) => eachCharacter._id === characterObj.id
+    (eachCharacter) => eachCharacter._id === characterObj._id
   );
 
   if (favouriteCharacterIndex === -1) {
@@ -41,14 +41,13 @@ function showOne(characterObj) {
   </li>
 `;
   } else {
-    favouriteCharactersUl.innerHTML += `
-    <li class="favouriteCharacter_Card js_favouriteCharacterCard" data-id="${favouriteObj._id}">
+    charactersUl.innerHTML += ` 
+    <li class="favouriteCard characterCard js_mainList" data-id="${characterObj._id}">
       <img
-        src="${favouriteObj.imageUrl}"
-        alt="Favourite Image"
+        src="${characterObj.imageUrl}"
+        alt="Image"
       />
-      <h4>${favouriteObj.name}</h4>
-      <button class="deleteFavBtn js_deleteFavouriteBtn" data-id="${favouriteObj._id}">X</button>
+      <h4>${characterObj.name}</h4>
     </li>
   `;
   }
@@ -120,7 +119,9 @@ function handleClickCharacter(event) {
 
   showFavourites();
 
-  clickedCharacterLi.classList.toggle("favouriteCard");
+  showAll();
+
+  // clickedCharacterLi.classList.toggle("favouriteCard");
 }
 function handlerDeleteFavourite(event) {
   const clickedFavCharacterLi = event.currentTarget;
@@ -136,7 +137,10 @@ function handlerDeleteFavourite(event) {
 
   favouritesData.splice(favouriteCharacterIndex, 1);
 
+  localStorage.setItem("favouritesData", JSON.stringify(favouritesData));
+
   showFavourites();
+  showAll();
 }
 
 // EVENTOS
